@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Freek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <!-- <link rel="stylesheet" href="gym.css"> -->
+    <style>
+        body{
+    
+    height: 100%;
+    background-size: cover;
+    margin:  -10px 0px;
+    padding: 0;
+} 
+header::before{
+    background: url('https://cdn.pixabay.com/photo/2014/11/02/10/41/plane-513641_960_720.jpg') no-repeat center/cover;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.85;
+}
+.header{
+    margin: 0;
+    padding: 0;
+}
+.mid  a{
+    text-decoration: none;
+    padding: 9px;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(235 237 124);
+    font-size: 20px;
+    text-align: center;
+}
+.left{
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 13px;
+}
+.mid{
+    display: block;
+    width: 33%;
+    margin: 20px auto;
+    text-align: center;
+    /* background-color: rgb(47, 51, 51); */
+    padding: 11px;
+    border-radius: 23px;
+    height: 20px;
+    margin: 15px auto;
+}
+.right{
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+.left img{
+    width: 40px;
+    height: 40px;
+    border-radius: 25%;
+    margin: -3px 16px;
+}
+.right img{
+    width: 23px;
+    height: 23px;
+    padding: 4px;
+}
+.left p{
+    color: aqua;
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    text-align: center;
+}
+.mid a:hover {
+    text-decoration: underline;
+    color: rgb(176, 216, 150);
+} 
+.container{
+    margin: 65px 31px;
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    width: 341px;
+    padding: 32px 10px;
+    border: 2px solid rgb(144, 236, 149);
+    border-radius: 22px;
+    font-size: 19px;
+    box-shadow: 2px 2px rgb(144, 236, 149);
+}
+.f{
+    margin: 10px;
+}
+.fgrp input{
+    padding: 4px;
+    margin: 5px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 23px;
+    border: 0px;
+    
+}
+.btn{
+   text-decoration: none ;
+   width: 180px;
+   margin: 10px;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: grey;
+    border-radius: 22px;
+    border: 0px;
+}
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="left">
+            <img src="https://img.freepik.com/free-vector/detailed-travel-logo_23-2148616611.jpg?w=2000" alt="">
+            <p>Let's Fly</p>
+        </div>
+        <div class="mid">
+            <span><a href="#">Home</a></span>
+            <span><a href="#">About us</a></span>
+            <span><a href="#">Membership</a></span>
+            <span><a href="#">Contact us</a></span>
+        </div>
+        <div class="right">
+            <a href="https://www.facebook.com/"><img src="https://1000logos.net/wp-content/uploads/2016/11/fb-logo.jpg" alt=""></a>
+            <a href="https://www.instagram.com/?hl=en"><img src="https://img.freepik.com/premium-vector/instagram-social-media-icon-gradient-social-media-logo_197792-4682.jpg" alt=""></a>
+        </div>
+    </header>
+    <div class="container">
+        Predict Flight Price
+        <form action="{{url_for('predict_datapoint')}}" method="POST" class="f">
+            <div class="fgrp">
+                <label for="Airline">Airline:</label>
+                <select id="Airline" name="Airline" class="form-control">
+                    <option value="Air India">Air India</option>
+                    <option value="IndiGo">IndiGo</option>
+                    <option value="Jet Airways">Jet Airways</option>
+                    <option value="SpiceJet">SpiceJet</option>
+                    <option value="Multiple carriers">Multiple carriers</option>
+                    <option value="GoAir">GoAir</option>
+                    <option value="Vistara">Vistara</option>
+                    <option value="Air Asia">Air Asia</option>
+                    <option value="Vistara Premium economy">Vistara Premium economy</option>
+                    <option value="Jet Airways Business">Jet Airways Business</option>
+                    <option value="Trujet">Trujet</option>
+                    <option value="Multiple carriers Premium economy">Multiple carriers Premium economy</option>
+                </select>
+            </div>
+            <div class="fgrp">
+                <label for="Source">Source:</label>
+                <select id="Source" name="Source" class="form-control">
+                    <option value="Delhi">Delhi</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Banglore">Banglore</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Chennai">Chennai</option>
+                </select>
+            </div>
+            <div class="fgrp">
+                <label for="Destination">Destination:</label>
+                <select id="Destination" name="Destination" class="form-control">
+                    <option value="Cochin">Cochin</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Banglore">Banglore</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="New Delhi">New Delhi</option>
+                </select>
+            </div>
+            <div class="fgrp">
+                <label for="Total Stops">Total Stops:</label>
+                <select id="Total Stops" name="Total Stops" class="form-control">
+                    <option value="non-stop">non-stop</option>
+                    <option value="1 stop">1 stop</option>
+                    <option value="2 stop">2 stop</option>
+                    <option value="3 stop">3 stop</option>
+                    <option value="4 stops">4 stops</option>
+                </select>
+            </div>
+            
+            <label for="Date_of_Journey">Date_of_Journey:</label>
+            <input type="date" id="Date_of_Journey" name="Date_of_Journey">
+
+            <label for="Arrival_Time">Arrival_Time:</label>
+            <input type="time" id="Arrival_Time" name="Arrival_Time">
+
+            <label for="Departure_Time">Departure_Time:</label>
+            <input type="time" id="Departure_Time" name="Departure_Time">
+
+            <div class="fgrp">
+                <label for="Additional">Additional:</label>
+                <select id="Additional" name="Additional" class="form-control">
+                    <option value="No check-in baggage included">No check-in baggage included</option>
+                    <option value="1 Short layover">1 Short layover</option>
+                    <option value="No Info">No info</option>
+                    <option value="In-flight meal not included">'In-flight meal not included</option>
+                    <option value="1 Long layover">1 Long layover</option>
+                    <option value="Change airports">Change airports</option>
+                    <option value="Business class">Business class</option>
+                    <option value="Red-eye flight">Red-eye flight</option>
+                    <option value="2 Long layover">2 Long layover</option>
+                </select>
+            </div>
+            <div class="col-sm-10">
+                <div class="alert alert-primary result" role="alert">
+                    The price of the Flight is: <strong>{{final_result}}</strong>
+                </div>
+            </div>
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

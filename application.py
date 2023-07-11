@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from src.pipelines.prediction_pipeline import CustomData, PredictPipeline
+from src.logger import logging
 
 
 application = Flask(__name__)
@@ -7,29 +8,24 @@ application = Flask(__name__)
 app = application
 
 
-@app.route('/')
-def home_page():
-    return render_template('index.html')
-
-
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def predict_datapoint():
     if request.method == 'GET':
         return render_template('form.html')
 
     else:
         data = CustomData(
-            carat=float(request.form.get('carat')),
-            depth=float(request.form.get('depth')),
-            table=float(request.form.get('table')),
-            x=float(request.form.get('x')),
-            y=float(request.form.get('y')),
-            z=float(request.form.get('z')),
-            cut=request.form.get('cut'),
-            color=request.form.get('color'),
-            clarity=request.form.get('clarity')
+            Airline=request.form.get('Airline'),
+            Source=request.form.get('Source'),
+            Destination=request.form.get('Destination'),
+            Total_Stops=request.form.get('Total_Stops'),
+            Date_of_Journey=request.form.get('Date_of_Journey'),
+            Arrival_Time=request.form.get('Arrival_Time'),
+            Dep_Time=request.form.get('Departure_Time'),
+            Additional_Info=request.form.get('Additional'),
         )
         final_new_data = data.get_data_as_dataframe()
+        logging.info(final_new_data)
         predict_pipeline = PredictPipeline()
         pred = predict_pipeline.predict(final_new_data)
 

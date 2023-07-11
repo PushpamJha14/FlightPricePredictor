@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 
-## intialize the data ingestion configuration
+# intialize the data ingestion configuration
 
 @dataclass
 class DataIngestionconfig:
@@ -16,7 +16,7 @@ class DataIngestionconfig:
     raw_data_path = os.path.join('artifacts', 'raw.csv')
 
 
-## create a data ingestion class
+# create a data ingestion class
 class DataIngestion:
     def __init__(self):
         self.ingestion_config = DataIngestionconfig()
@@ -25,7 +25,8 @@ class DataIngestion:
         logging.info('Data Ingestion method starts')
 
         try:
-            df = pd.read_excel(os.path.join('notebooks/data', 'Data_Train.xlsx'))
+            df = pd.read_excel(os.path.join(
+                'notebooks/data', 'Data_Train.xlsx'))
             logging.info('Dataset read as pandas Dataframe')
 
             os.makedirs(os.path.dirname(
@@ -44,7 +45,7 @@ class DataIngestion:
 
             logging.info('Ingestion of data is completed')
 
-            return(
+            return (
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path
 

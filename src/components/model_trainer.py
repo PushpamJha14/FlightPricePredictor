@@ -2,6 +2,8 @@
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression, Ridge,Lasso,ElasticNet
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import AdaBoostRegressor
 from sklearn.tree import DecisionTreeRegressor
 from src.exception import CustomException
 from src.logger import logging
@@ -31,21 +33,26 @@ class ModelTrainer:
                 test_array[:,:-1],
                 test_array[:,-1]
             )
-
+            logging.info('a')
             models={
             'LinearRegression':LinearRegression(),
             'Lasso':Lasso(),
             'Ridge':Ridge(),
             'Elasticnet':ElasticNet(),
-            'DecisionTree':DecisionTreeRegressor()
-            
+            'DecisionTree':DecisionTreeRegressor(),
+            'RandomForest':RandomForestRegressor(),
+            'XgBoost':AdaBoostRegressor(),
         }
-            
+            logging.info('b')
+            #######################
+            # logging.info(X_train.isnull().sum())
+            # logging.info(y_train.isnull().sum())
+            ###########################
             model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models)
             print(model_report)
             print('\n====================================================================================\n')
             logging.info(f'Model Report : {model_report}')
-
+            logging.info('c')
             # To get best model score from dictionary 
             best_model_score = max(sorted(model_report.values()))
 
